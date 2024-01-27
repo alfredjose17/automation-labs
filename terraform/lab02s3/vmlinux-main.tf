@@ -1,20 +1,22 @@
 resource "azurerm_network_interface" "linux-nic" {
-  name = "${var.linux_name}-nic"
-  location = var.location
+  name                = "${var.linux_name}-nic"
+  location            = var.location
   resource_group_name = var.resource_group_name
 
   ip_configuration {
-    name = "${var.linux_name}-ipconfig"
-    subnet_id = azurerm_subnet.network-subnet1.id
+    name                          = "${var.linux_name}-ipconfig"
+    subnet_id                     = azurerm_subnet.network-subnet1.id
+    public_ip_address_id          = azurerm_public_ip.linux-pip.id
     private_ip_address_allocation = "Dynamic"
   }
 }
 
 resource "azurerm_public_ip" "linux-pip" {
-  name                = "${var.linux_name}"
+  name                = "${var.linux_name}-pip"
   resource_group_name = var.resource_group_name
   location            = var.location
   allocation_method   = "Dynamic"
+  domain_name_label   = var.linux_name
 }
 
 resource "azurerm_linux_virtual_machine" "linux-vm" {
