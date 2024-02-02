@@ -7,8 +7,8 @@ locals {
   }
 }
 
-variable "linux_name" {
-  default = "n01619463-u-vm1"
+variable "vm_name" {
+  default = "n01619463-u-vm"
 }
 
 variable "vm_size" {

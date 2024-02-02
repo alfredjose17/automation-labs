@@ -15,7 +15,7 @@ variable "virtual_network_address_space" {
 }
 
 variable "subnet1_name" {
-  default = "network-sunet1"
+  default = "network-subnet1"
 }
 
 variable "subnet2_name" {
