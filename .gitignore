@@ -20,3 +20,16 @@ override.tfvars
 # If you override variables in a non-root module include the override files
 */override.tf
 */override.tf.json
+
+# Ignore Ansible generated files
+*.retry
+
+# Ignore Ansible fact caching directory
+.ansible/
+
+# Ignore temporary files created by editors
+*~
+
+# Ignore system and hidden files/directories
+.*.swp
+.DS_Store
