@@ -1,5 +1,5 @@
 [linux]
-n01619463-c-vm1.canadacentral.cloudapp.azure.com
+n01619463-c-vm1.canadacentral.cloudapp.azure.com package_bind=bind package_evolution=evolution
 n01619463-c-vm2.canadacentral.cloudapp.azure.com
 
 [windows]
@@ -12,6 +12,10 @@ ansible_connection=winrm
 ansible_port=5985
 ansible_winrm_transport=ntlm
 ansible_winrm_server_cert_validation=ignore
+
+[linux:vars]
+ansible_user=linuxadmin
+package_ypserv=ypserv
 
 [os:children]
 linux

@@ -1,0 +1,34 @@
+---
+- name: User and Group Management with External Variables
+  hosts: n01619463-c-vm1.canadacentral.cloudapp.azure.com
+  become: yes
+
+  vars_files:
+    - vars/userinfo.yml
+
+  tasks:
+    - name: Create group {{ grouplist1 }}
+      group:
+        name: "{{ grouplist1 }}"
+        state: present
+
+    - name: Create group {{ grouplist2 }}
+      group:
+        name: "{{ grouplist2 }}"
+        state: present
+
+    - name: Create user {{ userlist1 }} with UID 1800 and supplementary membership to {{ grouplist1 }}
+      user:
+        name: "{{ userlist1 }}"
+        uid: 1800
+        groups: "{{ grouplist1 }}"
+        append: yes
+
+    - name: Create user {{ userlist2 }} with UID 1900, shell /bin/bash, home directory matching their username under /home, and supplementary membership to {{ grouplist2 }}
+      user:
+        name: "{{ userlist2 }}"
+        uid: 1900
+        shell: /bin/bash
+        home: "/home/{{ userlist2 }}"
+        groups: "{{ grouplist2 }}"
+        append: yes

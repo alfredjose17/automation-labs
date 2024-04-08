@@ -1,0 +1,15 @@
+---
+- name: Install BIND and Evolution packages
+  hosts: n01619463-c-vm1.canadacentral.cloudapp.azure.com
+  become: yes
+
+  tasks:
+    - name: Install BIND package
+      yum:
+        name: "{{ package_bind }}"
+        state: present
+
+    - name: Install Evolution package
+      yum:
+        name: "{{ package_evolution }}"
+        state: present

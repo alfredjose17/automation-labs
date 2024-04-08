@@ -1,0 +1,37 @@
+---
+- name: User and Group Management
+  hosts: n01619463-c-vm1.canadacentral.cloudapp.azure.com
+  become: yes
+
+  vars:
+    grouplist1: group10
+    grouplist2: group20
+    userlist1: user10
+    userlist2: user20
+
+  tasks:
+    - name: Create group {{ grouplist1 }}
+      group:
+        name: "{{ grouplist1 }}"
+        state: present
+
+    - name: Create group {{ grouplist2 }}
+      group:
+        name: "{{ grouplist2 }}"
+        state: present
+
+    - name: Create user {{ userlist1 }} with UID 1800 and supplementary membership to {{ grouplist1 }}
+      user:
+        name: "{{ userlist1 }}"
+        uid: 1800
+        groups: "{{ grouplist1 }}"
+        append: yes
+
+    - name: Create user {{ userlist2 }} with UID 1900, shell /bin/bash, and home directory under /home/{{ userlist2 }} with supplementary membership to {{ grouplist2 }}
+      user:
+        name: "{{ userlist2 }}"
+        uid: 1900
+        shell: /bin/bash
+        home: "/home/{{ userlist2 }}"
+        groups: "{{ grouplist2 }}"
+        append: yes

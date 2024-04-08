@@ -1,0 +1,28 @@
+---
+- name: Setup Environment
+  hosts: linux
+  become: yes
+
+  tasks:
+    - name: Create user account user4000 with UID 5000
+      user:
+        name: user4000
+        uid: 5000
+
+    - name: Create group account cloudadmins with GID 3000
+      group:
+        name: cloudadmins
+        gid: 3000
+
+    - name: Install Apache and nmap packages
+      yum:
+        name: 
+          - httpd
+          - nmap
+        state: latest
+
+    - name: Start Apache service and enable auto-start
+      systemd:
+        name: httpd
+        state: started
+        enabled: yes
