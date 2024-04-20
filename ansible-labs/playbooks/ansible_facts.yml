@@ -1,0 +1,15 @@
+- name: Ansible facts
+  hosts: windows-vm1
+  gather_facts: yes
+
+  tasks:
+    - name: Display all facts
+      debug:
+        var: ansible_facts
+
+    - name: Display specific facts
+      debug:
+        msg: |
+          IPv4 Address: {{ ansible_facts['default_ipv4']['address'] | default('Not available') }}
+          FQDN: {{ ansible_facts['fqdn'] | default('Not available') }}
+          Short Hostname: {{ ansible_facts['hostname'] | default('Not available') }}

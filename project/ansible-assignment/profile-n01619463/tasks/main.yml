@@ -1,0 +1,5 @@
+- name: Append lines to the /etc/profile file 
+  blockinfile:
+    path: "{{ doc_path }}"
+    block: |
+        export TMOUT=1500

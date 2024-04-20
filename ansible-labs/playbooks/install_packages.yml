@@ -1,0 +1,30 @@
+---
+- name: Install BIND and Evolution packages
+  hosts: linux-vm1
+  become: yes
+
+  tasks:
+    - name: Install BIND package
+      yum:
+        name: "{{ package_bind }}"
+        state: present
+      register: install_bind_result
+
+    - name: Display evolution install results
+      debug:
+        var: install_bind_result
+
+    - name: Install Evolution package
+      yum:
+        name: "{{ package_evolution }}"
+        state: present
+      register: install_evolution_result
+
+    - name: Display evolution install results
+      debug:
+        var: install_evolution_result
+
+    - name: Display modified packages
+      debug:
+        msg: "Packages Modified: {{ install_bind_result['results'] + install_evolution_result['results'] }}"
+      when: install_bind_result.changed == true or install_evolution_result.changed == true

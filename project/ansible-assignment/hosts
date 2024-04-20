@@ -1,12 +1,17 @@
 [linux]
-n01619463-c-vm1.canadacentral.cloudapp.azure.com package_bind=bind package_evolution=evolution
+n01619463-c-vm1.canadacentral.cloudapp.azure.com
 n01619463-c-vm2.canadacentral.cloudapp.azure.com
+n01619463-c-vm3.canadacentral.cloudapp.azure.com
 
 [windows]
 n01619463-w-vm1.canadacentral.cloudapp.azure.com
 
+[os:children]
+linux
+windows
+
 [windows:vars]
-ansible_user=admin123
+ansible_user=alfredjose17
 ansible_password="Password@123"
 ansible_connection=winrm
 ansible_port=5985
@@ -14,9 +19,4 @@ ansible_winrm_transport=ntlm
 ansible_winrm_server_cert_validation=ignore
 
 [linux:vars]
-ansible_user=linuxadmin
-package_ypserv=ypserv
-
-[os:children]
-linux
-windows
+ansible_user=alfredjose17

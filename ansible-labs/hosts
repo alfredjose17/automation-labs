@@ -1,0 +1,10 @@
+[linux]
+linux-vm1 ansible_host=n01619463-c-vm1.canadacentral.cloudapp.azure.com
+linux-vm2 ansible_host=n01619463-c-vm2.canadacentral.cloudapp.azure.com
+
+[windows]
+windows-vm1 ansible_host=n01619463-w-vm1.canadacentral.cloudapp.azure.com
+
+[os:children]
+linux
+windows

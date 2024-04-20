@@ -47,8 +47,8 @@ module "linux" {
 module "windows" {
   source = "./modules/windows"
 
-  windows_admin_username               = "admin123"
-  windows_admin_password               = "Password@123"
+  windows_admin_username               = "winadm"
+  windows_admin_password               = "Winadm!23"
   windows_os_disk_storage_account_type = "StandardSSD_LRS"
   windows_os_disk_size                 = 128
   windows_os_disk_caching              = "ReadWrite"
